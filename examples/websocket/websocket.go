@@ -11,6 +11,7 @@ import (
 func main() {
 	token := os.Getenv("TOKEN")
         bot_id := os.Getenv("BOT_ID")
+        channel_id := os.Getenv("CHANNEL_ID")
 	api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
@@ -28,12 +29,12 @@ Loop:
 
 			case *slack.ConnectedEvent:
 				// Replace #general with your Channel ID
-				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "G2NJ8BD5E"))
+				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", channel_id))
 
 			case *slack.MessageEvent:
                                 command := strings.Split(ev.Text, " ")
 				fmt.Printf("Message: %v\n",  command)
-                                if bot_id == command[0]{
+                                if bot_id == command[0][2:len(command[0])-1]{
                                     fmt.Printf("This is command for bot")
                                 }
 			case *slack.RTMError:
