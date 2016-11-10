@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-        token = os.Getenv("TOKEN")
+	token := os.Getenv("TOKEN")
 	api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
@@ -28,16 +28,10 @@ Loop:
 
 			case *slack.ConnectedEvent:
 				// Replace #general with your Channel ID
-				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "#general"))
+				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "G2NJ8BD5E"))
 
 			case *slack.MessageEvent:
 				fmt.Printf("Message: %v\n", ev)
-
-			case *slack.PresenceChangeEvent:
-				fmt.Printf("Presence Change: %v\n", ev)
-
-			case *slack.LatencyReport:
-				fmt.Printf("Current latency: %v\n", ev.Value)
 
 			case *slack.RTMError:
 				fmt.Printf("Error: %s\n", ev.Error())
