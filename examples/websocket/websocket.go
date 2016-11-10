@@ -13,7 +13,7 @@ func main() {
 	api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
-	api.SetDebug(true)
+	api.SetDebug(false)
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
 
@@ -21,7 +21,6 @@ Loop:
 	for {
 		select {
 		case msg := <-rtm.IncomingEvents:
-			fmt.Print("Event Received: ")
 			switch ev := msg.Data.(type) {
 			case *slack.HelloEvent:
 				// Ignore hello
