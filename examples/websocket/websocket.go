@@ -33,7 +33,9 @@ Loop:
 			case *slack.MessageEvent:
                                 command := strings.Split(ev.Text, " ")
 				fmt.Printf("Message: %v\n",  command)
-
+                                if bot_id == command[0]{
+                                    fmt.Printf("This is command for bot")
+                                }
 			case *slack.RTMError:
 				fmt.Printf("Error: %s\n", ev.Error())
 
