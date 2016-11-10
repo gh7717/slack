@@ -9,11 +9,12 @@ import (
 )
 
 func main() {
-	api := slack.New("YOUR TOKEN HERE")
+        token = os.Getenv("TOKEN")
+	api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
 	api.SetDebug(true)
-
+        
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
 
