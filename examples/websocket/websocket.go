@@ -31,7 +31,7 @@ Loop:
 				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "G2NJ8BD5E"))
 
 			case *slack.MessageEvent:
-                                command := strings.split(ev.Text, " ")
+                                command := strings.Split(ev.Text, " ")
 				fmt.Printf("Message: %v\n",  command)
 
 			case *slack.RTMError:
