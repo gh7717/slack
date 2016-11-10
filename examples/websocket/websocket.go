@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"log"
 	"os"
-
+        "strings"
 	"github.com/nlopes/slack"
 )
 
 func main() {
 	token := os.Getenv("TOKEN")
+        bot_id := os.Getenv("BOT_ID")
 	api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
@@ -30,7 +31,8 @@ Loop:
 				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "G2NJ8BD5E"))
 
 			case *slack.MessageEvent:
-				fmt.Printf("Message: %v\n", ev.Text)
+                                command := strings.split(ev.Text, " ")
+				fmt.Printf("Message: %v\n",  command)
 
 			case *slack.RTMError:
 				fmt.Printf("Error: %s\n", ev.Error())
