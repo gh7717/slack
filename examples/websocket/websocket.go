@@ -14,7 +14,6 @@ func main() {
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
 	api.SetDebug(true)
-        
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
 
@@ -28,8 +27,6 @@ Loop:
 				// Ignore hello
 
 			case *slack.ConnectedEvent:
-				fmt.Println("Infos:", ev.Info)
-				fmt.Println("Connection counter:", ev.ConnectionCount)
 				// Replace #general with your Channel ID
 				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "#general"))
 
