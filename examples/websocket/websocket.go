@@ -31,7 +31,7 @@ Loop:
 				rtm.SendMessage(rtm.NewOutgoingMessage("Hello world", "G2NJ8BD5E"))
 
 			case *slack.MessageEvent:
-				fmt.Printf("Message: %v\n", ev)
+				fmt.Printf("Message: %v\n", ev.Text)
 
 			case *slack.RTMError:
 				fmt.Printf("Error: %s\n", ev.Error())
