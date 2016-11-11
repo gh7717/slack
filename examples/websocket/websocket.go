@@ -15,7 +15,10 @@ func main() {
         channel_id := os.Getenv("CHANNEL_ID")
         mongo := os.Getenv("MONGO")
         session, err := mgo.Dial(mongo)
-	api := slack.New(token)
+	if err != nil {
+            log.Fatal(err)
+        }
+        api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
 	api.SetDebug(true)
