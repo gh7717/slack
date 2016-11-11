@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
         "strings"
-	"github.com/nlopes/slack"
+	"github.com/gh7717/slack"
         "gopkg.in/mgo.v2"
 )
 
@@ -14,7 +14,7 @@ func main() {
         bot_id := os.Getenv("BOT_ID")
         channel_id := os.Getenv("CHANNEL_ID")
         mongo := os.Getenv("MONGO")
-        session, err := mgo.Dial(url)
+        session, err := mgo.Dial(mongo)
 	api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
