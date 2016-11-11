@@ -18,6 +18,7 @@ func main() {
 	if err != nil {
             log.Fatal(err)
         }
+        session.Close()
         api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
