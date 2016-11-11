@@ -6,16 +6,19 @@ import (
 	"os"
         "strings"
 	"github.com/nlopes/slack"
+        "gopkg.in/mgo.v2"
 )
 
 func main() {
 	token := os.Getenv("TOKEN")
         bot_id := os.Getenv("BOT_ID")
         channel_id := os.Getenv("CHANNEL_ID")
+        mongo := os.Getenv("MONGO")
+        session, err := mgo.Dial(url)
 	api := slack.New(token)
 	logger := log.New(os.Stdout, "slack-bot: ", log.Lshortfile|log.LstdFlags)
 	slack.SetLogger(logger)
-	api.SetDebug(false)
+	api.SetDebug(true)
 	rtm := api.NewRTM()
 	go rtm.ManageConnection()
 
